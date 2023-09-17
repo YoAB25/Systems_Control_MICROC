@@ -10,4 +10,7 @@ K = 0.9;
 p = 3;
 phi_f = K/p;
 Cr = 0;
+% PI Tuning
+Kp = 20;
+Ti = 0;
 
