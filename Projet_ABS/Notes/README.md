@@ -74,3 +74,24 @@ __Remarque__ :
 * Encore une fois, les graphes du cas par cas sont disponible dans le dossier *image*.
 
 ## Sous-système 3 : Modèle de la roue
+Afin d'obtenir des résultats plus cohérentes, nous proposons de grouper tous les 3 sous-systèmes précédement établies. Avant d'entammer cette partie, rappelons d'abord les élements fondamentaux concernant notre système: 
+* Tout d'abord, le système prend comme entrée la force de freinage demandée par le conducteur. Cette force est modélisée par une rampe dans un premier temps. Lorsqu'on dépasse la limite d'adhérence, ou encore lorsque la force demandée devient supérieure à $F_{lim} = 1962 N$, on opère alors dans le second cas.
+* Dans le deuxième cas, on fonctionne avec le glissement. Ce dernier dépend à la fois de la vitesse des roues ainsi que celui de la voiture. En utilisant la formule magique, ouencore la fonction $f(g)$, on peut obtenir alors la force à appliquer au niveau de chaque roue.
+* Cette force sera utilisé pour calculer la vitesse de déplacement de la voiture. En parallèle, en utilisant la force du couple de freinage $Cf = F*R_{roue}$ et le glissement obtenue, on peut calculer la vitesse des roues.
+* Les deux vitesses étant obtenues, on peut les utiliser pour boucler le système et calculer la valeur de glissement correspondante. 
+
+
+## Modèle du système de freinage : Sans ABS
+Dans cette partie, nous proposons de grouper les 3 différents sous-systèmes précédemment détaillés. Rappelons que notre but est la simulation d'un système de freinage sans ABS.
+
+A l'instar de ce qui précède, les résultats obtenues et utilisées pour notre interprétation sont disponibles dans le dossier *images* présents dans ce même *repository*.
+
+* __Résultat 1 : La force appliquée au niveau des roues :__ \
+Commençant d'abord par la visualisation de la force appliquée au niveau des roues. Cette force qui a une allure assez particulière. Remarquons que la force appliquée au départ est égale à celle demandée par le conductucteur (ou alors la consigne de rampe de force). Cependant après 2s, on assiste à une chute brusque pour remonter un certaine valeur à l'infini. Ce résultat est, en quelque sorte, similaire à ce qu'on avait eu pour le cas de $g=0$. Sauf que, cette fois, on peut retrouver l'allure de la fonction magique après 2s. C'est au bout de cette courte période qu'on a $F_{demandée}>F_{lim}=1962N$. 
+* __Résultat 2 : Allure du glissement:__ \
+A $t=0$, la vitesse de déplacement de la roue est égale à celle des roues. Alors, par la construction de g, on aura une valeur nulle au voisinage de $t=0$. A partir de $t=2s$, encore une fois c'est le temps nécessaire pour dépasser la limite de force, le glissement croît jusqu'à atteindre sa valeur limite en 1.
+* __Résulatt 3 : Allure des deux vitesses:__\
+Le graphe obtenu était également conforme avec ce qui a été attendu. A $t=0$, les deux vitesses sont identiques, au moment ou le glissement entre en jeu (à partir de $t=2s$), on assiste à une différence significative des deux vitesses. Cette dernière se manifeste clairement après un certain temps, le temps d'arrêt. A un certain moment donné, lorsque la vitesse de la roue tend vers 0, on remaque que celle de la voiture est encore opérationnelle. Celà est dû au fait qu'on opère avec un glissement tel \
+que $g \in [0.2,1[ \subset [0,1]$. 
+
+__Conclusion : Cohérence des résultats.__
