@@ -95,3 +95,10 @@ Le graphe obtenu était également conforme avec ce qui a été attendu. A $t=0$
 que $g \in [0.2,1[ \subset [0,1]$. 
 
 __Conclusion : Cohérence des résultats.__
+
+## Influence du système de transmission pneumatique
+Le système de transmission pneumatique se comporte comme un filtre passe-bas de fonction de transfert $H(s) = \dfrac{1}{0.01s+1}$. 
+
+Dans un premier instant, on peut voir qu'il n'affecte pas le comportement du système. L'allure des deux courbes (vitesse de voiture et des roues) sont identiques à la section précédente. Cependent, si on utilise les outils de mesure, comme montré dans la figure, on peut voir qu'il a introduit un certain temps de retard très minime de $100ms$.
+Déjà la nature du filtre passe-bas $H(s) = \dfrac{1}{s+1/\tau}$ où $\tau = 1/0.01 = 100ms$ confome avec ce qui a été obtenu. 
+
