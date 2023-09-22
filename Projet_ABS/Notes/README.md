@@ -2,7 +2,7 @@
 
 ## Modélisation d'un système de freinage sans ABS
 
-## Sous-système 1 : Modèle de freinage
+### Sous-système 1 : Modèle de freinage
 Dans cette partie, nous nous sommes intéressés à la modélisation du premier bloc de notre système. Le modèle de freinage.
 
 Tant que la force demandée (ou appliquée au niveau de la pédale par le conducteur) est inférieur à un seuil donnée, la force demandée *F_demandée* sera égale à la force appliquée au niveau des roues *F_appliquée*.
@@ -39,7 +39,7 @@ Alors, on peut *à priori* donner ces *pré*-interprétations:
     * Soit Vvoiture->\inf ce qui sera physiquement impossible;
     * Soit Vroue->0. Et alors on obtient une décroissant de la force appliquée par rapport au seuil.
 
-## Sous-Système 2 : Modèle de la voiture
+### Sous-Système 2 : Modèle de la voiture
 Dans cette partie, nous souhaitons modéliser la voiture. Nous avons considéré que les forces de freinage sont réparties au niveau de chaque roue. 
 En appliquant le principe fondamentale de la dynamique:
 $$
@@ -73,7 +73,7 @@ __Remarque__ :
 * Dans certains cas (où la vitesse décroît vers 0 au bout d'une durée t donnée), nous avons obtenus des valeurs de vitesses négatives ce qui est physiquement impossible (au moins à l'échelle instantanné). Pour cela un bloc comparateur prend le maximum entre la valeur de la vitesse de sortie et 0 pour faire afficher un graphe adéquat. 
 * Encore une fois, les graphes du cas par cas sont disponible dans le dossier *image*.
 
-## Sous-système 3 : Modèle de la roue
+### Sous-système 3 : Modèle de la roue
 Afin d'obtenir des résultats plus cohérentes, nous proposons de grouper tous les 3 sous-systèmes précédement établies. Avant d'entammer cette partie, rappelons d'abord les élements fondamentaux concernant notre système: 
 * Tout d'abord, le système prend comme entrée la force de freinage demandée par le conducteur. Cette force est modélisée par une rampe dans un premier temps. Lorsqu'on dépasse la limite d'adhérence, ou encore lorsque la force demandée devient supérieure à $F_{lim} = 1962 N$, on opère alors dans le second cas.
 * Dans le deuxième cas, on fonctionne avec le glissement. Ce dernier dépend à la fois de la vitesse des roues ainsi que celui de la voiture. En utilisant la formule magique, ouencore la fonction $f(g)$, on peut obtenir alors la force à appliquer au niveau de chaque roue.
@@ -81,7 +81,7 @@ Afin d'obtenir des résultats plus cohérentes, nous proposons de grouper tous l
 * Les deux vitesses étant obtenues, on peut les utiliser pour boucler le système et calculer la valeur de glissement correspondante. 
 
 
-## Modèle du système de freinage : Sans ABS
+### Modèle du système de freinage : Sans ABS
 Dans cette partie, nous proposons de grouper les 3 différents sous-systèmes précédemment détaillés. Rappelons que notre but est la simulation d'un système de freinage sans ABS.
 
 A l'instar de ce qui précède, les résultats obtenues et utilisées pour notre interprétation sont disponibles dans le dossier *images* présents dans ce même *repository*.
@@ -96,9 +96,17 @@ que $g \in [0.2,1[ \subset [0,1]$.
 
 __Conclusion : Cohérence des résultats.__
 
-## Influence du système de transmission pneumatique
+### Influence du système de transmission pneumatique
 Le système de transmission pneumatique se comporte comme un filtre passe-bas de fonction de transfert $H(s) = \dfrac{1}{0.01s+1}$. 
 
 Dans un premier instant, on peut voir qu'il n'affecte pas le comportement du système. L'allure des deux courbes (vitesse de voiture et des roues) sont identiques à la section précédente. Cependent, si on utilise les outils de mesure, comme montré dans la figure, on peut voir qu'il a introduit un certain temps de retard très minime de $100ms$.
 Déjà la nature du filtre passe-bas $H(s) = \dfrac{1}{s+1/\tau}$ où $\tau = 1/0.01 = 100ms$ confome avec ce qui a été obtenu. 
+
+## Modélisation du freinage avec un système ABS
+### ABS à temps continu
+### ABS à temps discret
+### ABS amélioré
+
+## Répartiteur électronique de freinage (EBD)
+
 
