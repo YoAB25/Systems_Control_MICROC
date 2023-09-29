@@ -103,10 +103,28 @@ Dans un premier instant, on peut voir qu'il n'affecte pas le comportement du sys
 Déjà la nature du filtre passe-bas $H(s) = \dfrac{1}{s+1/\tau}$ où $\tau = 1/0.01 = 100ms$ confome avec ce qui a été obtenu. 
 
 ## Modélisation du freinage avec un système ABS
-### ABS à temps continu
-### ABS à temps discret
-### ABS amélioré
+Dans cette partie, on propose d'ajouter un système ABS à notre voiture. La modélisation consiste à contrôler/réguler la consigne de freinage d'entrée (ou encore le freinage demandé). Ainsi, nous proposons d'utiliser un régulateur PID ou PI. Dans notre cas, on a choisi de travailler avec un PI puisque la composente dérivative n'a pas un impact réelle sur notre système.
+Pour un rendu optimum, il convient de noter que le glissement a été saturé à la valeur g=0.2. 
+Maintenons il faut régler ce PI. Les méthodes empiriques notamment celle de Zeigler-Nichols vu en cours ne fonctionne plus dans notre cas à cause de la variabilité de notre système. L'autre solution consistait à utiliser l'outil d'auto-réglage fourni par Simulink. Cependant, cette dernière n'a pas pu aboutir à cause de la nature non linéaire de notre système. Le seul choix qui reste est alors de suivre la méthode traditionnelle *choisir aléatoirement Kp et Ti*. 
+On commence d'abord par des valeurs relativement petites de Ti et Ki, on fait monter Ki jusqu'à avoir une réponse satisfaisante. Après, régler Ti afin d'introduire le terme integrateur du correcteur pour réduire les éventuels dépassements causés par le composante Kp.
 
+Il est important de noter certains remarques __dont on a pas trouvé d'explication encore__: 
+* On commence d'abord par le cas initial près de notre résultat précédent
+* Lorsqu'on augmente trop le ration Kp/Ti on obtient un arrêt de simulation et un résultat étrange. La vitesse de la voiture devient 0 alors que celle des roues est encore active. *Pour une raison étrange, cela n'a pas pu se reproduire ...*
+* Il existe un seul au delà de lequel, peu importe les valeurs Kp et Ti choisi, on n'obtient aucun résultat.
+* Mais, ce régulateur a réduit le temps d'arrêt à 3.2s au lieu de +4s sans régulateur !
+
+Après de longues tests, les valeurs ont été choisi en respectant un ratio 1:2 tel que Kp=10 et Ti=5. Encore une fois, ce ne sont pas les paramètres idéaux et celà peut causer des soucis au niveau d'interprétation ultérieurement . 
+
+Autre remarque, le correcteur à temps continu PI(s) où à temps discret donne exactement le même résultat ! *faut investiguer l'utilité de cette question...*
+### ABS à temps continu
+On utilise le bloc PI(s)
+### ABS à temps discret
+On utilise le bloc PI(z)
+### ABS Tout ou Rien *ToR*
+Ici, nous avons inclus un mécanisme pour se rapprocher à la réalité qui consiste à envoyer des accoups de la consigne de freinage à 400N. Cependant, aucune différence n'a pu être repérée par rapport à ce qui précède. *Cela peut revenir au fait que les valeurs de PI ne sont pas convenables...* 
+### ABS amélioré
+*Réservé à la 3e partie*
 ## Répartiteur électronique de freinage (EBD)
 
 
