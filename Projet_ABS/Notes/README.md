@@ -126,5 +126,56 @@ Ici, nous avons inclus un mécanisme pour se rapprocher à la réalité qui cons
 ### ABS amélioré
 *Réservé à la 3e partie*
 ## Répartiteur électronique de freinage (EBD)
+Dans cette partie, on ne considère plus que le freinage est identique sur les 4 roues. En effet, dans le cas où le moteur est placé vers l'avant du moteur, on aura une certaine répartition de la masse. Cette répartition sera supérieure vers le train avant que le train arrière. Ainsi le train d'avant a tendence à glisser plus puisqu'il va atteindre sa limite d'adhérence en premier.
 
+Notons __d__ la distance entre le centre de gravité et le train avant. Et __D__ la distance entre le train avant et arrière ou l'empattement. La hauteur de centre de gravité sera alors noté h
 
+#### Cas 1 : Répartition de masse avec acc = 0
+On applique d'abord le principe fondamentale de la dynamique appliqué à la voiture ! 
+$$
+\begin{equation}
+\sum C = J_{\Delta}.\dfrac{d\Omega_{voiture}}{dt} = 0  \hspace{0.2cm} (La \ voiture \ ne \ tourne \ pas \ quand \ même)
+\end{equation}
+$$
+Sachant qu'on appliquera les couples par rapport au centre d'inertie G
+$$
+\begin{align*}
+     \sum C &= J_{\Delta}.\dfrac{d\Omega_{voiture}}{dt} = 0  \hspace{0.2cm} \\
+     N_{av}*d - N_{ar}*(D-d) -T_{av}*h - T_{ar}*h &= 0 
+\end{align*}
+$$
+
+Or en appliquant le principe fondamentale de la dynamique, on aura:
+$$
+\begin{align*}
+     \sum F_{ext} &= m.\dfrac{dV_{voiture}}{dt} = 0  \hspace{0.2cm} \\
+    |x : -T_{ar}-T_{av} &= m*ax = 0 \\
+    |y : N_{ar}+N_{av}-mg &= m*ay = 0    
+\end{align*}
+$$
+
+Alors, en ré-arrangeant la premier équation, et simplifiant les termes qui s'annulent on trouve ce qui suit : 
+$$
+\begin{align*}
+N_{av} &= mg*\dfrac{D-d}{D} \\
+N_{ar} &= mg*\dfrac{d}{D}
+\end{align*}
+$$
+
+#### Cas 2 : Répartition de masse avec acc = 5
+Nous aurons les mêmes systèmes d'équation, sauf que cette fois l'accélération va être présente, notamment le terme en T!
+$$
+\begin{equation}
+    -T_{ar}-T_{av} = m*ax = m*a = 5*m
+\end{equation}
+$$
+
+Alors avec cette modification, on aura : 
+$$
+\begin{align*}
+N_{ar} &= m*\dfrac{gd+ah}{D} \\
+N_{av} &= m*\dfrac{g(D-d)-ah}{D}
+\end{align*}
+$$
+
+Une simple application numérique permet de vérifier que le train arrière ne décollera pas *Vérification que $$N_{ar} > 0$$*
